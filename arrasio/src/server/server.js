@@ -192,6 +192,9 @@ var keys = [
         'MidnightIsSuperCoolNotYouTheTheme',
         'DrinkBleachPlz',
         'FrostyAndBeautifulJustLikeYourColdHeart',
+    // Discord
+        'DefBtArrasIo', // DefenderByte
+        'ILikeFnfILikeMadnessIlikeArrasIAmDevIAmMotor', // Tricky
 ];
 
 if (!c.TOKEN_REQUIRED) {
@@ -248,6 +251,7 @@ const room = {
     room.findType('bas4');
     room.findType('roid');
     room.findType('rock');
+    room.findType('maze');
     room.nestFoodAmount = 1.5 * Math.sqrt(room.nest.length) / room.xgrid / room.ygrid;
     room.random = () => {
         return {
@@ -4799,7 +4803,7 @@ var maintainloop = (() => {
     // The NPC function
     let makenpcs = (() => {
         // Make base protectors if needed.
-            /*let f = (loc, team) => { 
+            let f = (loc, team) => { 
                 let o = new Entity(loc);
                     o.define(Class.baseProtector);
                     o.team = -team;
@@ -4807,7 +4811,7 @@ var maintainloop = (() => {
             };
             for (let i=1; i<5; i++) {
                 room['bas' + i].forEach((loc) => { f(loc, i); }); 
-            }*/
+            }
         // Return the spawning function
         let bots = [];
         return () => {
@@ -4825,12 +4829,12 @@ var maintainloop = (() => {
             // Spawning
             spawnCrasher(census);
             spawnBosses(census);
-            /*/ Bots
+            // Bots
                 if (bots.length < c.BOTS) {
                     let o = new Entity(room.random());
                     o.color = 17;
                     o.define(Class.bot);
-                    o.define(Class.basic);
+                    o.define(Class.basic, Class.single);
                     o.name += ran.chooseBotName();
                     o.refreshBodyAttributes();
                     o.color = 17;
@@ -4845,7 +4849,6 @@ var maintainloop = (() => {
                         o.skill.maintain();
                     }
                 });
-            */
         };
     })();
     // The big food function
